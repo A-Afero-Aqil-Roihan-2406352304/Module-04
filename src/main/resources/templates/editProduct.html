@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Product</title>
+</head>
+<body>
+<div class="container">
+    <h3>Edit Product</h3>
+    <form th:action="@{/product/edit}" th:object="${product}" method="post">
+
+        <input type="hidden" th:field="*{productId}" />
+
+        <label>Name</label>
+        <input type="text" th:field="*{productName}" class="form-control" />
+
+        <label>Quantity</label>
+        <input type="number" th:field="*{productQuantity}" class="form-control"
+               th:classappend="${#fields.hasErrors('productQuantity')} ? 'is-invalid' : ''" />
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('productQuantity')}" th:errors="*{productQuantity}">
+            Error message placeholder
+        </div>
+
+        <br>
+        <button type="submit">Save Changes</button>
+    </form>
+</div>
+</body>
+</html>
