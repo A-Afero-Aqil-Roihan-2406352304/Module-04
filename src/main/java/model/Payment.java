@@ -15,7 +15,32 @@ public class Payment {
         this.id = id;
         this.method = method;
         this.paymentData = paymentData;
-        // Skeleton: status di-hardcode sementara
-        this.status = "SUCCESS";
+
+        if (paymentData != null && paymentData.containsKey("voucherCode")) {
+            String voucherCode = paymentData.get("voucherCode");
+
+            if (isValidVoucher(voucherCode)) {
+                this.status = "SUCCESS";
+            } else {
+                this.status = "REJECTED";
+            }
+        } else {
+            this.status = "REJECTED";
+        }
+    }
+
+    private boolean isValidVoucher(String voucherCode) {
+        if (voucherCode == null || voucherCode.length() != 16 || !voucherCode.startsWith("ESHOP")) {
+            return false;
+        }
+
+        int numericalCount = 0;
+        for (char c : voucherCode.toCharArray()) {
+            if (Character.isDigit(c)) {
+                numericalCount++;
+            }
+        }
+
+        return numericalCount == 8;
     }
 }
