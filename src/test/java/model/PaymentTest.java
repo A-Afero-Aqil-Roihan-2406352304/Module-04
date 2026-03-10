@@ -64,4 +64,54 @@ class PaymentTest {
 
         assertEquals("REJECTED", payment.getStatus());
     }
+    @Test
+    void testCreatePaymentValidBankTransfer() {
+        paymentData.put("bankName", "BCA");
+        paymentData.put("referenceCode", "REF12345678");
+        UUID id = UUID.randomUUID();
+        Payment payment = new Payment(id, "BANK", paymentData);
+
+        assertEquals("BANK", payment.getMethod());
+        assertEquals("SUCCESS", payment.getStatus());
+    }
+
+    @Test
+    void testCreatePaymentInvalidBankTransferEmptyBankName() {
+        paymentData.put("bankName", "");
+        paymentData.put("referenceCode", "REF12345678");
+        UUID id = UUID.randomUUID();
+        Payment payment = new Payment(id, "BANK", paymentData);
+
+        assertEquals("REJECTED", payment.getStatus());
+    }
+
+    @Test
+    void testCreatePaymentInvalidBankTransferNullBankName() {
+        paymentData.put("bankName", null);
+        paymentData.put("referenceCode", "REF12345678");
+        UUID id = UUID.randomUUID();
+        Payment payment = new Payment(id, "BANK", paymentData);
+
+        assertEquals("REJECTED", payment.getStatus());
+    }
+
+    @Test
+    void testCreatePaymentInvalidBankTransferEmptyReferenceCode() {
+        paymentData.put("bankName", "BCA");
+        paymentData.put("referenceCode", "");
+        UUID id = UUID.randomUUID();
+        Payment payment = new Payment(id, "BANK", paymentData);
+
+        assertEquals("REJECTED", payment.getStatus());
+    }
+
+    @Test
+    void testCreatePaymentInvalidBankTransferNullReferenceCode() {
+        paymentData.put("bankName", "BCA");
+        paymentData.put("referenceCode", null);
+        UUID id = UUID.randomUUID();
+        Payment payment = new Payment(id, "BANK", paymentData);
+
+        assertEquals("REJECTED", payment.getStatus());
+    }
 }
