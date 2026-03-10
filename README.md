@@ -43,3 +43,22 @@ Saya baru membuat dockerfile dan isinya untuk packaging (progress CD). Kedepanny
     Jika terdapat bug, lebih mudah untuk menemukan masalahnya di kode saya karena prinsip SRP. Contoh jika ada masalah dengan id, maka saya tahu harus cek di model Product/Car, bukan di repository-nya.
 3. Kerugian tidak menerapkan SOLID di projek saya:
    Jika terdapat bug, saya lebih bingung  untuk menemukan masalahnya di kode saya. Contoh jika ada masalah dengan id, maka saya harus membuka kembali repository dari Product dan Car untuk mememperbaiki bagian ID tersebut (Jika saya belum menerapkan SRP untuk bagian ini).
+
+# Module 04
+1. Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best
+   Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this
+   TDD flow is useful enough for you or not. If not, explain things that you need to do next time
+   you make more tests.
+- Jawaban:
+- TDD flow ini membuat saya yakin bahwa implementasi kode saya memang benar sesuai rencana, karena implementasi langsung ditest.
+- TDD flow ini membuat saya lebih memahami masalah karena dipaksa memikirkan dulu tentang kemungkinan benar atau salah di testnya.
+
+2. You have created unit tests in Tutorial. Now reflect whether your tests have successfully
+   followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you
+   create more tests.
+- Jawaban:
+- Fast : Test berjalan cepat tanpa menganggu workflow saya.
+- Independent : Setiap test case tidak saling bergantung. Saya mengimplementasikannya dengan menggunakan @BeforeEach untuk mereset, sebelum test dijalankan.
+- Repeatable : Test saya akan memberikan hasil yang sama di setiap komputer karena semua data dummy dibuat di dalam kode test.
+- Self-Validating : Karena saya menggunakan Assertions, tidak perlu mengecek log secara manual.
+- Timely : Karena dibuat dengan mengikuti tutorial modul 4, saya sudah megimplementasikan dengan prinsip membuat test sebelum implementasi.
