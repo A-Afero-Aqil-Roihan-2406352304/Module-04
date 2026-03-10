@@ -29,6 +29,13 @@ public class Payment {
         }
     }
 
+    public Payment(UUID id, String method, Map<String, String> paymentData, String status) {
+        this.id = id;
+        this.method = method;
+        this.paymentData = paymentData;
+        this.status = status;
+    }
+
     private boolean isValidVoucher(String voucherCode) {
         if (voucherCode == null || voucherCode.length() != 16 || !voucherCode.startsWith("ESHOP")) {
             return false;
