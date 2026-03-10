@@ -34,14 +34,14 @@ class OrderTest {
         this.products.clear();
 
         assertThrows(IllegalArgumentException.class, () -> {
-            Order order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
+            Order order = new Order(UUID.fromString("13652556-012a-4c07-b546-54eb1396d79b"),
                     this.products, 1708560000L, "Safira Sudrajat");
         });
     }
 
     @Test
     void testCreateOrderDefaultStatus() {
-        Order order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
+        Order order = new Order(UUID.fromString("13652556-012a-4c07-b546-54eb1396d79b"),
                 this.products, 1708560000L, "Safira Sudrajat");
 
         assertSame(this.products, order.getProducts());
@@ -49,7 +49,7 @@ class OrderTest {
         assertEquals("Sampo Cap Bambang", order.getProducts().get(0).getProductName());
         assertEquals("Sabun Cap Usep", order.getProducts().get(1).getProductName());
 
-        assertEquals("13652556-012a-4c07-b546-54eb1396d79b", order.getId());
+        assertEquals(UUID.fromString("13652556-012a-4c07-b546-54eb1396d79b"), order.getId());
         assertEquals(1708560000L, order.getOrderTime());
         assertEquals("Safira Sudrajat", order.getAuthor());
         assertEquals("WAITING_PAYMENT", order.getStatus());
@@ -57,7 +57,7 @@ class OrderTest {
 
     @Test
     void testCreateOrderSuccessStatus() {
-        Order order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
+        Order order = new Order(UUID.fromString("13652556-012a-4c07-b546-54eb1396d79b"),
                 this.products, 1708560000L, "Safira Sudrajat", "SUCCESS");
 
         assertEquals("SUCCESS", order.getStatus());
@@ -66,14 +66,14 @@ class OrderTest {
     @Test
     void testCreateOrderInvalidStatus() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Order order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
+            Order order = new Order(UUID.fromString("13652556-012a-4c07-b546-54eb1396d79b"),
                     this.products, 1708560000L, "Safira Sudrajat", "MEOW");
         });
     }
 
     @Test
     void testSetStatusToCancelled() {
-        Order order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
+        Order order = new Order(UUID.fromString("13652556-012a-4c07-b546-54eb1396d79b"),
                 this.products, 1708560000L, "Safira Sudrajat");
 
         order.setStatus("CANCELLED");
@@ -82,7 +82,7 @@ class OrderTest {
 
     @Test
     void testSetStatusToInvalidStatus() {
-        Order order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
+        Order order = new Order(UUID.fromString("13652556-012a-4c07-b546-54eb1396d79b"),
                 this.products, 1708560000L, "Safira Sudrajat");
 
         assertThrows(IllegalArgumentException.class, () -> {
